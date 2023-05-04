@@ -59,17 +59,18 @@ void RutAtencionTempo()
 {
 if(ESTADO == JUGANDO){
 	if(ultimaTeclaPulsada == ARRIBA){
-
+		y = y + 1;
 	}
 	if(ultimaTeclaPulsada == ABAJO){
-		
+		y = y - 1;
 	}
 	if(ultimaTeclaPulsada == DERECHA){
-		
+		x = x + 1;
 	}
 	if(ultimaTeclaPulsada == IZQUIERDA){
-		
+		x = x - 1;
 	}
+	actualizarPosicion(x,y);
 }
 	
 }
