@@ -13,8 +13,7 @@ Código desarrollado basado en el ejemplo "Simple sprite demo" de dovoto y en ot
 u16* gfxrombo;
 u16* gfxromboGrande;
 
-		int moneday;
-		int monedax;
+	
 /* Reservar memoria para cada sprite que se quiera mostrar en pantalla */
 void memoriaReserva()
 {
@@ -172,10 +171,9 @@ int i;
 
 /* Esta función dibuja un rombo en la posición x-y de pantalla. A cada rombo que se quiera mostrar en pantalla se le debe asignar un índice distinto, un valor entre 0 y 126 */
 
-void MostrarMoneda(int indice)
+void MostrarMoneda(int indice, int x, int y)
 { 
- 		moneday = rand()%192;
-		monedax = rand()%256;
+ 		
 oamSet(&oamMain, //main graphics engine context
 		indice,           //oam index (0 to 127)  
 		x, y,   //x and y pixel location of the sprite
@@ -215,40 +213,207 @@ oamSet(&oamMain, //main graphics engine context
 oamUpdate(&oamMain); 
 
 }
-
-void MostrarRomboGrande(int indice, int x, int y)
+void MostrarMoneda(int indice, int x, int y)
 { 
- 
+ 		
 oamSet(&oamMain, //main graphics engine context
 		indice,           //oam index (0 to 127)  
 		x, y,   //x and y pixel location of the sprite
 		0,                    //priority, lower renders last (on top)
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
-		SpriteSize_32x32,     
+		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxromboGrande,//+16*16/2,                  //pointer to the loaded graphics
+		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		false,			//hide the sprite?
 		false, false, //vflip, hflip
 		false	//apply mosaic
 		); 
-
 	  
 oamUpdate(&oamMain);  
 }
 
-void BorrarRomboGrande(int indice, int x, int y)
+/* Esta función borra de la pantalla el Rombo con el índice indicado */
+void BorrarMoneda(int indice)
 {
 
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		monedax, moneday,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+oamUpdate(&oamMain); 
+
+}
+void MostrarMoneda(int indice, int x, int y)
+{ 
+ 		
 oamSet(&oamMain, //main graphics engine context
 		indice,           //oam index (0 to 127)  
 		x, y,   //x and y pixel location of the sprite
 		0,                    //priority, lower renders last (on top)
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
-		SpriteSize_32x32,     
+		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxromboGrande,//+16*16/2,                  //pointer to the loaded graphics
+		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	  
+oamUpdate(&oamMain);  
+}
+
+/* Esta función borra de la pantalla el Rombo con el índice indicado */
+void BorrarMoneda(int indice)
+{
+
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		monedax, moneday,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+oamUpdate(&oamMain); 
+
+}
+void MostrarMoneda(int indice, int x, int y)
+{ 
+ 		
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	  
+oamUpdate(&oamMain);  
+}
+
+/* Esta función borra de la pantalla el Rombo con el índice indicado */
+void BorrarMoneda(int indice)
+{
+
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		monedax, moneday,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+oamUpdate(&oamMain); 
+
+}
+void MostrarMoneda(int indice, int x, int y)
+{ 
+ 		
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	  
+oamUpdate(&oamMain);  
+}
+
+/* Esta función borra de la pantalla el Rombo con el índice indicado */
+void BorrarMoneda(int indice)
+{
+
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		monedax, moneday,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+oamUpdate(&oamMain); 
+
+}
+void MostrarMoneda(int indice, int x, int y)
+{ 
+ 		
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	  
+oamUpdate(&oamMain);  
+}
+
+/* Esta función borra de la pantalla el Rombo con el índice indicado */
+void BorrarMoneda(int indice)
+{
+
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		monedax, moneday,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		true,			//hide the sprite?
