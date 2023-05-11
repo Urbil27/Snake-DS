@@ -10,16 +10,27 @@ Código desarrollado basado en el ejemplo "Simple sprite demo" de dovoto y en ot
 #include "sprites.h"
 #include "definiciones.h"
 
-u16* gfxrombo;
-u16* gfxromboGrande;
+u16* gfxMoneda;
+u16* gfxCabezaDer;
+u16* gfxCabezaIzq;
+u16* gfxCabezaArriba;
+u16* gfxCabezaAbajo;
+u16* gfxCuerpo;
+
 
 	
 /* Reservar memoria para cada sprite que se quiera mostrar en pantalla */
 void memoriaReserva()
 {
 	/* Por cada sprite que se quiera incluir en la pantalla principal hay que hacer algo equivalente a lo que sigue */
-	gfxrombo= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-	gfxromboGrande=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
+	gfxMoneda= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxCabezaDer= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxCabezaIzq= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxCabezaAbajo= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxCabezaArriba= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxCuerpo= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+
+	//gfxromboGrande=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
 }
 
 /* A cada uno de los 256 valores que puede tomar un pixel en la PALETA PRINCIPAL
@@ -28,8 +39,13 @@ void memoriaReserva()
 void EstablecerPaletaPrincipal() {
 
 	SPRITE_PALETTE[1] = RGB15(31,0,0); // los píxeles con valor 1 serán de color rojo.
-	SPRITE_PALETTE[2] = RGB15(0,31,0); // los píxeles con valor 2 serán verdes.
-	SPRITE_PALETTE[3] = RGB15(0,0,31); // los píxeles con valor 3 serán azules.
+	SPRITE_PALETTE[2] = RGB15(31,31,0); // los píxeles con valor 2 serán verdes.
+	SPRITE_PALETTE[3] = RGB15(31,31,31); // los píxeles con valor 3 serán Blanco.
+	SPRITE_PALETTE[4] = RGB15(0,31,0); // los píxeles con valor 4 serán Verde fosforito.
+	SPRITE_PALETTE[6] = RGB15(0,0,0); // los píxeles con valor 6 serán negro.
+	SPRITE_PALETTE[14] = RGB15(25,0,0); // los píxeles con valor 14 serán Granate.
+	SPRITE_PALETTE[23] = RGB15(19,31,19); // los píxeles con valor 23 serán verde claro.
+	SPRITE_PALETTE[21] = RGB15(0,12,0); // los píxeles con valor 21 serán verde oscuro.
 }
 
 /* definición de un sprite de 16x16 píxeles para dibujar un rombo */
@@ -160,13 +176,35 @@ int i;
 	//sprite de 16*16
 	for(i = 0; i < 16 * 16 / 2; i++) 
 	{	
-		gfxrombo[i] = rombo[i*2] | (rombo[(i*2)+1]<<8);				
+		gfxMoneda[i] = moneda[i*2] | (moneda[(i*2)+1]<<8);				
 	}
+		for(i = 0; i < 16 * 16 / 2; i++) 
+	{	
+		gfxCuerpo[i] = cuerpo[i*2] | (cuerpo[(i*2)+1]<<8);				
+	}
+		for(i = 0; i < 16 * 16 / 2; i++) 
+	{	
+		gfxCabezaDer[i] = cabezaDer[i*2] | (cabezaDer[(i*2)+1]<<8);				
+	}
+		for(i = 0; i < 16 * 16 / 2; i++) 
+	{	
+		gfxCabezaIzq[i] = cabezaIzq[i*2] | (cabezaIzq[(i*2)+1]<<8);				
+	}
+		for(i = 0; i < 16 * 16 / 2; i++) 
+	{	
+		gfxCabezaAbajo[i] = cabezaAbajo[i*2] | (cabezaAbajo[(i*2)+1]<<8);				
+	}
+		for(i = 0; i < 16 * 16 / 2; i++) 
+	{	
+		gfxCabezaArriba[i] = cabezaArriba[i*2] | (cabezaArriba[(i*2)+1]<<8);				
+	}
+	
 	//sprite de 32x32
-	for(i = 0; i < 32 * 32 / 2; i++) 
+	/*for(i = 0; i < 32 * 32 / 2; i++) 
 	{	
 		gfxromboGrande[i] = romboGrande[i*2] | (romboGrande[(i*2)+1]<<8);				
 	}
+	*/
 }
 
 /* Esta función dibuja un rombo en la posición x-y de pantalla. A cada rombo que se quiera mostrar en pantalla se le debe asignar un índice distinto, un valor entre 0 y 126 */
@@ -213,7 +251,7 @@ oamSet(&oamMain, //main graphics engine context
 oamUpdate(&oamMain); 
 
 }
-void MostrarMoneda(int indice, int x, int y)
+void MostrarCuerpo(int indice, int x, int y)
 { 
  		
 oamSet(&oamMain, //main graphics engine context
@@ -223,7 +261,7 @@ oamSet(&oamMain, //main graphics engine context
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		gfxCuerpo,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		false,			//hide the sprite?
@@ -235,17 +273,17 @@ oamUpdate(&oamMain);
 }
 
 /* Esta función borra de la pantalla el Rombo con el índice indicado */
-void BorrarMoneda(int indice)
+void BorrarCuerpo(int indice)
 {
 
 oamSet(&oamMain, //main graphics engine context
 		indice,           //oam index (0 to 127)  
-		monedax, moneday,   //x and y pixel location of the sprite
+		x, y,   //x and y pixel location of the sprite
 		0,                    //priority, lower renders last (on top)
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		gfxCuerpo,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		true,			//hide the sprite?
@@ -255,7 +293,7 @@ oamSet(&oamMain, //main graphics engine context
 oamUpdate(&oamMain); 
 
 }
-void MostrarMoneda(int indice, int x, int y)
+void MostrarCabezaArriba(int indice, int x, int y)
 { 
  		
 oamSet(&oamMain, //main graphics engine context
@@ -265,7 +303,7 @@ oamSet(&oamMain, //main graphics engine context
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		gfxCabezaArriba,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		false,			//hide the sprite?
@@ -277,17 +315,17 @@ oamUpdate(&oamMain);
 }
 
 /* Esta función borra de la pantalla el Rombo con el índice indicado */
-void BorrarMoneda(int indice)
+void BorrarCabezaArriba(int indice)
 {
 
 oamSet(&oamMain, //main graphics engine context
 		indice,           //oam index (0 to 127)  
-		monedax, moneday,   //x and y pixel location of the sprite
+		x, y,   //x and y pixel location of the sprite
 		0,                    //priority, lower renders last (on top)
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		gfxCabezaArriba,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		true,			//hide the sprite?
@@ -297,7 +335,7 @@ oamSet(&oamMain, //main graphics engine context
 oamUpdate(&oamMain); 
 
 }
-void MostrarMoneda(int indice, int x, int y)
+void MostrarCabezaAbajo(int indice, int x, int y)
 { 
  		
 oamSet(&oamMain, //main graphics engine context
@@ -307,7 +345,7 @@ oamSet(&oamMain, //main graphics engine context
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		gfxCabezaAbajo,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		false,			//hide the sprite?
@@ -319,17 +357,17 @@ oamUpdate(&oamMain);
 }
 
 /* Esta función borra de la pantalla el Rombo con el índice indicado */
-void BorrarMoneda(int indice)
+void BorrarCabezaAbajo(int indice)
 {
 
 oamSet(&oamMain, //main graphics engine context
 		indice,           //oam index (0 to 127)  
-		monedax, moneday,   //x and y pixel location of the sprite
+		x, y,   //x and y pixel location of the sprite
 		0,                    //priority, lower renders last (on top)
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		gfxCabezaAbajo,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		true,			//hide the sprite?
@@ -339,7 +377,7 @@ oamSet(&oamMain, //main graphics engine context
 oamUpdate(&oamMain); 
 
 }
-void MostrarMoneda(int indice, int x, int y)
+void MostrarCabezaIzq(int indice, int x, int y)
 { 
  		
 oamSet(&oamMain, //main graphics engine context
@@ -349,7 +387,7 @@ oamSet(&oamMain, //main graphics engine context
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		gfxCabezaIzq,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		false,			//hide the sprite?
@@ -361,17 +399,17 @@ oamUpdate(&oamMain);
 }
 
 /* Esta función borra de la pantalla el Rombo con el índice indicado */
-void BorrarMoneda(int indice)
+void BorrarCabezaIzq(int indice)
 {
 
 oamSet(&oamMain, //main graphics engine context
 		indice,           //oam index (0 to 127)  
-		monedax, moneday,   //x and y pixel location of the sprite
+		x, y,   //x and y pixel location of the sprite
 		0,                    //priority, lower renders last (on top)
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		gfxCabezaIzq,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		true,			//hide the sprite?
@@ -381,7 +419,7 @@ oamSet(&oamMain, //main graphics engine context
 oamUpdate(&oamMain); 
 
 }
-void MostrarMoneda(int indice, int x, int y)
+void MostrarCabezaDer(int indice, int x, int y)
 { 
  		
 oamSet(&oamMain, //main graphics engine context
@@ -391,7 +429,7 @@ oamSet(&oamMain, //main graphics engine context
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		gfxCabezaDer,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		false,			//hide the sprite?
@@ -403,17 +441,17 @@ oamUpdate(&oamMain);
 }
 
 /* Esta función borra de la pantalla el Rombo con el índice indicado */
-void BorrarMoneda(int indice)
+void BorrarCabezaDer(int indice)
 {
 
 oamSet(&oamMain, //main graphics engine context
 		indice,           //oam index (0 to 127)  
-		monedax, moneday,   //x and y pixel location of the sprite
+		x, y,   //x and y pixel location of the sprite
 		0,                    //priority, lower renders last (on top)
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		gfxCabezaDer,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		true,			//hide the sprite?

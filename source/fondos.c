@@ -8,8 +8,7 @@
 
 #include "fondos.h"
 #include "graficos.h"
-#include "Puerta.h"
-#include "PuertaAbierta.h"
+
 
 /* Se elige el canal de DMA que se utilizará para copiar las imágenes en memoria.*/
 static const int DMA_CHANNEL = 3;

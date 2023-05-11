@@ -3,18 +3,23 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "C:\\devkitPro\\libnds\\include\\**",
+                "C:\\devkitPro\\libctru\\include\\**",
+                "C:\\devkitPro\\devkitARM\\include\\**",
+                "C:\\devkitPro\\devkitARM\\arm-none-eabi\\include\\**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
-                "_UNICODE"
+                "_UNICODE",
+                "ARM9"
             ],
             "windowsSdkVersion": "10.0.19041.0",
-            "compilerPath": "cl.exe",
+            "compilerPath": "C:\\devkitPro\\devkitARM\\bin\\arm-none-eabi-gcc",
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "intelliSenseMode": "windows-msvc-x64",
+            "intelliSenseMode": "windows-gcc-x64",
             "forcedInclude": [
                 "nds.h"
             ]

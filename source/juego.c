@@ -46,11 +46,9 @@ void juego()
 	EstablecerVectorInt();
 	HabilitarIntTeclado();
 	HabilitarIntTempo();
-	void mostrarMoneda(){
-		
-	}
+
 	void actualizarPosicion(int x, int y){
-		
+	
 	}
 	boolean MonedaRecogida(){
 		
