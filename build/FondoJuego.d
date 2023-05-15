@@ -1,0 +1,1 @@
+FondoJuego.o: FondoJuego.s

@@ -2,5 +2,8 @@
 fondos.h
 -------------------------------------*/
 
-extern void visualizarPuerta();
+extern void visualizarFondoInicioAzul();
+extern void visualizarFondoInicioVerde();
+extern void visualizarFondoGameOver();
+extern void visualizarFondoJuego();
 extern void visualizarPuertaAbierta();

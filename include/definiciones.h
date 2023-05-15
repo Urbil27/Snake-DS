@@ -29,7 +29,8 @@ definiciones.h
 touchPosition PANT_DAT;
 
 // Nombres asignados a las teclas para facilitar la comprensión de nuestro código
-
+#define VERDE 0
+#define AZUL 1
 #define A			0 
 #define B			1
 #define SELECT			2 

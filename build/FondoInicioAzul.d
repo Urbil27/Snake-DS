@@ -1,0 +1,1 @@
+FondoInicioAzul.o: FondoInicioAzul.s

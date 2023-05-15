@@ -12,8 +12,8 @@ rutinasAtencion.c
 int ESTADO;
 int seg3;
 int ultimaTeclaPulsada;
-int x;
-int y;
+extern int x;
+extern int y;
 void RutAtencionTeclado ()
 {
 /*if (ESTADO == CERRADA)
