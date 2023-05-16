@@ -223,7 +223,7 @@ oamSet(&oamMain, //main graphics engine context
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		gfxMoneda,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		false,			//hide the sprite?
@@ -235,17 +235,17 @@ oamUpdate(&oamMain);
 }
 
 /* Esta función borra de la pantalla el Rombo con el índice indicado */
-void BorrarMoneda(int indice)
+void BorrarMoneda(int indice, int x, int y)
 {
 
 oamSet(&oamMain, //main graphics engine context
 		indice,           //oam index (0 to 127)  
-		monedax, moneday,   //x and y pixel location of the sprite
+		x, y,   //x and y pixel location of the sprite
 		0,                    //priority, lower renders last (on top)
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
-		gfxmoneda,//+16*16/2,                  //pointer to the loaded graphics
+		gfxMoneda,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		true,			//hide the sprite?
@@ -277,7 +277,7 @@ oamUpdate(&oamMain);
 }
 
 /* Esta función borra de la pantalla el Rombo con el índice indicado */
-void BorrarCuerpo(int indice)
+void BorrarCuerpo(int indice, int x, int y)
 {
 
 oamSet(&oamMain, //main graphics engine context
@@ -319,7 +319,7 @@ oamUpdate(&oamMain);
 }
 
 /* Esta función borra de la pantalla el Rombo con el índice indicado */
-void BorrarCabezaArriba(int indice)
+void BorrarCabezaArriba(int indice, int x, int y)
 {
 
 oamSet(&oamMain, //main graphics engine context
@@ -361,7 +361,7 @@ oamUpdate(&oamMain);
 }
 
 /* Esta función borra de la pantalla el Rombo con el índice indicado */
-void BorrarCabezaAbajo(int indice)
+void BorrarCabezaAbajo(int indice, int x, int y)
 {
 
 oamSet(&oamMain, //main graphics engine context
@@ -403,7 +403,7 @@ oamUpdate(&oamMain);
 }
 
 /* Esta función borra de la pantalla el Rombo con el índice indicado */
-void BorrarCabezaIzq(int indice)
+void BorrarCabezaIzq(int indice, int x, int y)
 {
 
 oamSet(&oamMain, //main graphics engine context
@@ -445,7 +445,7 @@ oamUpdate(&oamMain);
 }
 
 /* Esta función borra de la pantalla el Rombo con el índice indicado */
-void BorrarCabezaDer(int indice)
+void BorrarCabezaDer(int indice, int x, int y)
 {
 
 oamSet(&oamMain, //main graphics engine context

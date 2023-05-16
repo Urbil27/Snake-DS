@@ -9,7 +9,6 @@ rutinasAtencion.c
 #include "fondos.h"
 #include "sprites.h"
 
-int ESTADO;
 int seg3;
 int ultimaTeclaPulsada;
 extern int x;
@@ -32,21 +31,33 @@ void RutAtencionTeclado ()
 	if( ESTADO == JUGANDO){
 		if(ultimaTeclaPulsada == ARRIBA || ultimaTeclaPulsada == ABAJO){
 			if(tecla == IZQUIERDA){
-				mostrarCabezaIzq(indice,x,y)
+				BorrarCabezaAbajo(1,x,y);
+				BorrarCabezaArriba(1,x,y);
+				BorrarCabezaDer(1,x,y);
+				MostrarCabezaIzq(1,x,y);
 				ultimaTeclaPulsada = tecla;
 			}
 			if(tecla == DERECHA){
-				mostrarCabezaDcha(indice,x,y)
+				BorrarCabezaAbajo(1,x,y);
+				BorrarCabezaArriba(1,x,y);
+				BorrarCabezaIzq(1,x,y);
+				MostrarCabezaDer(1,x,y);
 				ultimaTeclaPulsada = tecla;
 			}
 		}
 		if(ultimaTeclaPulsada == IZQUIERDA || ultimaTeclaPulsada == DERECHA){
 			if(tecla == ARRIBA){
-				mostrarCabezaArriba(indice,x,y);
+				BorrarCabezaAbajo(1,x,y);
+				BorrarCabezaDer(1,x,y);
+				BorrarCabezaIzq(1,x,y);
+				MostrarCabezaArriba(1,x,y);
 				ultimaTeclaPulsada = tecla;
 			}
 			if(tecla == ABAJO){
-				mostrarCabezaAbajo(indice,x,y);
+				BorrarCabezaArriba(1,x,y);
+				BorrarCabezaDer(1,x,y);
+				BorrarCabezaIzq(1,x,y);
+				MostrarCabezaAbajo(1,x,y);
 				ultimaTeclaPulsada = tecla;
 			}
 		}

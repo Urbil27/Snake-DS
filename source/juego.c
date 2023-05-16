@@ -15,7 +15,7 @@ y en otro ejemplo de Jaeden Ameronen
 #include "perifericos.h"
 #include "rutinasAtencion.h"
 #include "fondos.h"
-int colorSerpiente = VERDE;
+extern int colorSerpiente = VERDE;
 int cuerpos[][3] = { {0,0,0},
 					 {1,8,0},
 					 {2,16,0}};
@@ -23,8 +23,8 @@ int tiempo;
 int x;
 int y;
 touchPosition pos_pantalla;
-int My;
-int Mx;
+extern int My;
+extern int Mx;
 extern int numSprites = 0;
 int  numMonedasRecogidas = 0;
 void actualizarPosicion(int x, int y){
@@ -37,8 +37,8 @@ void cargarFondoAzulInicio(){
 	
 }
 void generarMoneda(){
-	int My = (rand() % 187)+8;
-	int Mx = (rand() % 187)+8;
+	My = (rand() % 187)+8;
+	Mx = (rand() % 187)+8;
 	while(My == y && Mx == x){
 		My = (rand() % 187)+8;
 		Mx = (rand() % 187)+8;
@@ -99,30 +99,11 @@ void juego()
 
 		if(ESTADO == INICIO){
 			visualizarFondoInicioVerde();
-			if(PosTactil().py >=90 && PosTactil().py<= 145){ 
-				if (PosTactil().px >=0 && PosTactil().px<= 120){//Pulsacion flecha izquierda
-					if(colorSerpiente == VERDE){
-						visualizarFondoInicioAzul();
-						colorSerpiente = AZUL;
-					}
-					if(colorSerpiente == AZUL){
-						visualizarFondoInicioVerde();
-						colorSerpiente = VERDE;
-					}
-				}
-				if (PosTactil().px >=130 && PosTactil().px<= 255){//Pulsacion flecha Derecha
-					if(colorSerpiente == VERDE){
-						visualizarFondoInicioAzul();
-						colorSerpiente = AZUL;
-					}
-					if(colorSerpiente == AZUL){
-						visualizarFondoInicioVerde();
-						colorSerpiente = VERDE;
-					}
-				}
-				}
+			PosTactil();
+			
+			}
 
-				}
+				
 			if(TeclaDetectada()==1){
 				tecla = TeclaPulsada();
 			}
@@ -132,10 +113,7 @@ void juego()
 				x = 127;
 				y = 95;
 			}
-			/*
-			if(tecla != 0){
-			}
-			*/
+		
 		
 		if(ESTADO == JUGANDO){
 			MostrarFondoJuego();
@@ -186,10 +164,7 @@ void juego()
 				}
 				ESTADO = INICIO;
 			}
-		}
-	} 	
-}
-
-
-
+		}	
+	}
+} 	
 

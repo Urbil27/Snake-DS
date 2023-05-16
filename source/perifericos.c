@@ -5,16 +5,37 @@ perifericos.c
 #include <nds.h>
 #include <stdio.h>
 #include "definiciones.h"
-
+#include "juego.c"
 
 int tecla; //variable para guardar la tecla pulsada
 
-extern touchPosition PosTactil(){   //Esta funcion mira donde se está tocando en la pantalla y la devuelve
+extern void PosTactil(){   //Esta funcion mira donde se está tocando en la pantalla y la devuelve
 	touchPosition pos_pantalla;
 	touchRead(&pos_pantalla);
-	return pos_pantalla;
-}
 
+	if(pos_pantalla.py >=90 && pos_pantalla.py<= 145){ 
+				if (pos_pantalla.px >=0 && pos_pantalla.px<= 120){//Pulsacion flecha izquierda
+					if(colorSerpiente == VERDE){
+						visualizarFondoInicioAzul();
+						colorSerpiente = AZUL;
+					}
+					if(colorSerpiente == AZUL){
+						visualizarFondoInicioVerde();
+						colorSerpiente = VERDE;
+					}
+				}
+				if (pos_pantalla.px >=130 && pos_pantalla.px<= 255){//Pulsacion flecha Derecha
+					if(colorSerpiente == VERDE){
+						visualizarFondoInicioAzul();
+						colorSerpiente = AZUL;
+					}
+					if(colorSerpiente == AZUL){
+						visualizarFondoInicioVerde();
+						colorSerpiente = VERDE;
+					}
+				}
+	}
+}
 int TeclaDetectada() 
 {
 	//Devuelve TRUE si detecta que se ha pulsado alguna tecla.
@@ -121,12 +142,12 @@ void InhibirIntTempo()
 void PonerEnMarchaTempo()
 {
 	//ESCRIBID AQUÍ VUESTRO CÓDIGO
-	TIMER0_CNT |= 0x0008
+	TIMER0_CNT |= 0x0008;
 	
 }
 
 void PararTempo()
 {
 	//ESCRIBID AQUÍ VUESTRO CÓDIGO
-	TIMER0_CNT &= 0xff7f
+	TIMER0_CNT &= 0xff7f;
 }
