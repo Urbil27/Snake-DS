@@ -9,7 +9,7 @@ perifericos.c
 
 int tecla; //variable para guardar la tecla pulsada
 
-touchPosition PosTactil(){   //Esta funcion mira donde se está tocando en la pantalla y la devuelve
+extern touchPosition PosTactil(){   //Esta funcion mira donde se está tocando en la pantalla y la devuelve
 	touchPosition pos_pantalla;
 	touchRead(&pos_pantalla);
 	return pos_pantalla;

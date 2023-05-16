@@ -72,7 +72,7 @@ void juego()
 	//Escribe en la fila 22 columna 5 de la pantalla	
 	iprintf("\x1b[22;5HPrueba de escritura");						
 
-/* Si se quiere visualizar el valor de una variable escribir %d dentro de las comillas y el nombre de la variable fuera de las comillas */
+	/* Si se quiere visualizar el valor de una variable escribir %d dentro de las comillas y el nombre de la variable fuera de las comillas */
 	iprintf("\x1b[23;5HPrueba de escritura con variable. Valor=%d", i);
 
 	//*******************************EN LA 2.ACTIVIDAD ********************************//
@@ -89,7 +89,6 @@ void juego()
 	EstablecerVectorInt();
 	HabilitarIntTeclado();
 	HabilitarIntTempo();
--
 	while(1)
 	{	
 		
@@ -100,8 +99,8 @@ void juego()
 
 		if(ESTADO == INICIO){
 			visualizarFondoInicioVerde();
-			if(PosTactil.py >=90 && PosTactil.py<= 145){ 
-				if (PosTactil.px >=0 && PosTactil.px<= 120){//Pulsacion flecha izquierda
+			if(PosTactil().py >=90 && PosTactil().py<= 145){ 
+				if (PosTactil().px >=0 && PosTactil().px<= 120){//Pulsacion flecha izquierda
 					if(colorSerpiente == VERDE){
 						visualizarFondoInicioAzul();
 						colorSerpiente = AZUL;
@@ -111,7 +110,7 @@ void juego()
 						colorSerpiente = VERDE;
 					}
 				}
-				if (PosTactil.px >=130 && PosTactil.px<= 255){//Pulsacion flecha Derecha
+				if (PosTactil().px >=130 && PosTactil().px<= 255){//Pulsacion flecha Derecha
 					if(colorSerpiente == VERDE){
 						visualizarFondoInicioAzul();
 						colorSerpiente = AZUL;
@@ -137,20 +136,20 @@ void juego()
 			if(tecla != 0){
 			}
 			*/
-		}
+		
 		if(ESTADO == JUGANDO){
 			MostrarFondoJuego();
 			if(numMonedasRecogidas < 15){
-				ConfigurarTemporizador(55050,64)//50 ticks
+				ConfigurarTemporizador(55050,64);//50 ticks
 			}
 			if(numMonedasRecogidas = 15){
-				ConfigurarTemporizador(56003,64)//55 ticks
+				ConfigurarTemporizador(56003,64);//55 ticks
 			}
 			if(numMonedasRecogidas = 30){
-				ConfigurarTemporizador(56798,64)//60 ticks
+				ConfigurarTemporizador(56798,64);//60 ticks
 			}
 			
-			MostrarCabezaArriba(numSprites,x,y)
+			MostrarCabezaArriba(numSprites,x,y);
 			generarMoneda();
 			if(MonedaRecogida()){
 				numMonedasRecogidas++;
@@ -188,9 +187,9 @@ void juego()
 				ESTADO = INICIO;
 			}
 		}
-
-	}
+	} 	
 }
+
 
 
 
