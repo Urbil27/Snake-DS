@@ -40,7 +40,7 @@ int TeclaDetectada()
 {
 	//Devuelve TRUE si detecta que se ha pulsado alguna tecla.
 	if ((~TECLAS_DAT & 0x03ff)!=0){
-		iprintf(~TECLAS_DAT & 0x03ff);
+		//iprintf(~TECLAS_DAT & 0x03ff);
 		return 1;
 	} 
 	else return 0;
@@ -94,7 +94,7 @@ void HabilitarIntTeclado()
 	//y después volver a habilitar las interrupciones de forma general 
 	IME=0;
         //ESCRIBID AQUÍ VUESTRO CÓDIGO
-		IE |= 0x00000100;
+		IE |= 0x00000300;
 	
 	IME=1;
 }

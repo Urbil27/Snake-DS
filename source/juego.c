@@ -15,6 +15,7 @@ y en otro ejemplo de Jaeden Ameronen
 #include "perifericos.h"
 #include "rutinasAtencion.h"
 #include "fondos.h"
+#include "sprites.h"
 
 int ESTADO;
 int colorSerpiente = VERDE;
@@ -27,7 +28,7 @@ int My;
 int Mx;
 extern int numSprites = 0;
 int  numMonedasRecogidas = 0;
-void actualizarPosicion(int x, int y){
+void actualizarPosicion(){
 	if(ultimaTeclaPulsada == ARRIBA){
 		MostrarCabezaArriba(1,x,y);
 	}
@@ -43,13 +44,15 @@ void actualizarPosicion(int x, int y){
 }
 
 void generarMoneda(){
-	My = (rand() % 187)+8;
-	Mx = (rand() % 187)+8;
+	My = (rand() % 150)+15;
+	Mx = (rand() % 187)+15;
 	while(My == y && Mx == x){
 		My = (rand() % 187)+8;
 		Mx = (rand() % 187)+8;
 	}
 	//numSprites++;
+	//iprintf("\x1b[17;5HX: %d",Mx);
+	//iprintf("\x1b[18;5HY: %d",My);
 	MostrarMoneda(2,Mx,My);
 }
 
@@ -75,10 +78,10 @@ void juego()
 	ESTADO=INICIO;
 	
 	//Escribe en la fila 22 columna 5 de la pantalla	
-	iprintf("\x1b[22;5HPrueba de escritura");						
+	//iprintf("\x1b[22;5HPrueba de escritura");						
 
 	/* Si se quiere visualizar el valor de una variable escribir %d dentro de las comillas y el nombre de la variable fuera de las comillas */
-	iprintf("\x1b[23;5HPrueba de escritura con variable. Valor=%d", i);
+	//iprintf("\x1b[23;5HPrueba de escritura con variable. Valor=%d", i);
 
 	//*******************************EN LA 2.ACTIVIDAD ********************************//
         // LLAMADAS A REALIZAR:
@@ -90,7 +93,9 @@ void juego()
 	// Habilitar interrupciones.
 	//******************************************************************************//
 	ConfigurarTeclado(0x400F);
-	ConfigurarTemporizador(55050,0xFFF9);
+	ConfigurarTemporizador(55050,0xFFF9);//50 ticks
+
+	//ConfigurarTemporizador(39321,0xFFFA);//5 ticks
 	EstablecerVectorInt();
 	HabilitarIntTeclado();
 	HabilitarIntTempo();
@@ -106,48 +111,44 @@ void juego()
 			visualizarFondoInicioVerde();
 			PosTactil();
 			
-			}
-
-				
 			if(TeclaDetectada()==1){
 				tecla = TeclaPulsada();
 			}
 			if(tecla == START){
-				ESTADO = JUGANDO;
+				visualizarFondoJuego();
 				numMonedasRecogidas = 0;
 				x = 127;
 				y = 95;
-				iprintf("\x1b[20;5HXd");
-				MostrarCabezaArriba(1,60,60);						
+				MostrarCabezaArriba(1,x,y);						
 				generarMoneda();
+				ESTADO = JUGANDO;
 			}
-		
+		}
 		
 		if(ESTADO == JUGANDO){
-			visualizarFondoJuego();
+			
+			actualizarPosicion();
 			if(numMonedasRecogidas < 15){
-				ConfigurarTemporizador(55050,64);//50 ticks
+				ConfigurarTemporizador(55050,0xFFF9);//50 ticks
 			}
 			if(numMonedasRecogidas = 15){
-				ConfigurarTemporizador(56003,64);//55 ticks
+				ConfigurarTemporizador(56003,0xFFF9);//55 ticks
 			}
 			if(numMonedasRecogidas = 30){
-				ConfigurarTemporizador(56798,64);//60 ticks
+				ConfigurarTemporizador(56798,0xFFF9);//60 ticks
 			}
 			if(MonedaRecogida()){
 				numMonedasRecogidas++;
-				BorrarMoneda(2);
+				BorrarMoneda(2,Mx,My);
 				generarMoneda();
 			}
 			if(chocado()){
 				visualizarFondoGameOver();
-				BorrarMoneda(numSprites);
-				numSprites--;
-				BorrarCabezaArriba(numSprites);
-				BorrarCabezaAbajo(numSprites);
-				BorrarCabezaDer(numSprites);
-				BorrarCabezaIzq(numSprites);
-				numSprites--;
+				BorrarMoneda(2,Mx,My);
+				BorrarCabezaArriba(1,x,y);
+				BorrarCabezaAbajo(1,x,y);
+				BorrarCabezaDer(1,x,y);
+				BorrarCabezaIzq(1,x,y);
 				ESTADO = FINAL;
 			}
 		}
@@ -157,9 +158,12 @@ void juego()
 			}
 			if(tecla == START){
 				ESTADO = JUGANDO;
+				visualizarFondoJuego();
 				numMonedasRecogidas = 0;
 				x = 127;
 				y = 95;
+				MostrarCabezaArriba(1,60,60);						
+				generarMoneda();
 			}
 			if(tecla ==  SELECT){
 				visualizarFondoInicioVerde();
