@@ -94,7 +94,7 @@ void HabilitarIntTeclado()
 	//y después volver a habilitar las interrupciones de forma general 
 	IME=0;
         //ESCRIBID AQUÍ VUESTRO CÓDIGO
-		IE |= 0x00000300;
+		IE |= 0x00001000;
 	
 	IME=1;
 }

@@ -92,7 +92,7 @@ void juego()
 	// Habilitar las interrupciones del temporizador.
 	// Habilitar interrupciones.
 	//******************************************************************************//
-	ConfigurarTeclado(0x400F);
+	ConfigurarTeclado(0x40F0);
 	ConfigurarTemporizador(55050,0xFFF9);//50 ticks
 
 	//ConfigurarTemporizador(39321,0xFFFA);//5 ticks
