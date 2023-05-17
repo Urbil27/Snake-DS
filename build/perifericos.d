@@ -48,10 +48,7 @@ perifericos.o: /home/user/SharedFiles/Proyecto/source/perifericos.c \
   /opt/devkitPro/libnds/include/nds/system.h \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
   /home/user/SharedFiles/Proyecto/include/definiciones.h \
-  /home/user/SharedFiles/Proyecto/source/juego.c \
-  /home/user/SharedFiles/Proyecto/include/perifericos.h \
-  /home/user/SharedFiles/Proyecto/include/rutinasAtencion.h \
-  /home/user/SharedFiles/Proyecto/include/fondos.h
+  /home/user/SharedFiles/Proyecto/include/juego.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -151,10 +148,4 @@ perifericos.o: /home/user/SharedFiles/Proyecto/source/perifericos.c \
 
 /home/user/SharedFiles/Proyecto/include/definiciones.h:
 
-/home/user/SharedFiles/Proyecto/source/juego.c:
-
-/home/user/SharedFiles/Proyecto/include/perifericos.h:
-
-/home/user/SharedFiles/Proyecto/include/rutinasAtencion.h:
-
-/home/user/SharedFiles/Proyecto/include/fondos.h:
+/home/user/SharedFiles/Proyecto/include/juego.h:

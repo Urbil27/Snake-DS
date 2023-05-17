@@ -1,7 +1,7 @@
 /*-------------------------------------
 perifericos.h
 -------------------------------------*/
-
+extern int ultimaTeclaPulsada;
 extern int TeclaDetectada();
 extern int TeclaPulsada();
 extern void ConfigurarTeclado(int Conf_Tec);

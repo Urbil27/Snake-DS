@@ -15,27 +15,33 @@ y en otro ejemplo de Jaeden Ameronen
 #include "perifericos.h"
 #include "rutinasAtencion.h"
 #include "fondos.h"
-extern int colorSerpiente = VERDE;
-int cuerpos[][3] = { {0,0,0},
-					 {1,8,0},
-					 {2,16,0}};
+
+int ESTADO;
+int colorSerpiente = VERDE;
 int tiempo;
+int ultimaTeclaPulsada;
 int x;
 int y;
 touchPosition pos_pantalla;
-extern int My;
-extern int Mx;
+int My;
+int Mx;
 extern int numSprites = 0;
 int  numMonedasRecogidas = 0;
 void actualizarPosicion(int x, int y){
-	
+	if(ultimaTeclaPulsada == ARRIBA){
+		MostrarCabezaArriba(1,x,y);
 	}
-void cargarSpriteFondoInicio(){
+	if(ultimaTeclaPulsada == ABAJO){
+		MostrarCabezaAbajo(1,x,y);
+	}
+	if(ultimaTeclaPulsada == IZQUIERDA){
+		MostrarCabezaIzq(1,x,y);
+	}
+	if(ultimaTeclaPulsada == DERECHA){
+		MostrarCabezaDer(1,x,y);
+	}
+}
 
-}
-void cargarFondoAzulInicio(){
-	
-}
 void generarMoneda(){
 	My = (rand() % 187)+8;
 	Mx = (rand() % 187)+8;
@@ -43,8 +49,8 @@ void generarMoneda(){
 		My = (rand() % 187)+8;
 		Mx = (rand() % 187)+8;
 	}
-	numSprites++;
-	MostrarMoneda(numSprites,Mx,My);
+	//numSprites++;
+	MostrarMoneda(2,Mx,My);
 }
 
 bool chocado(){
@@ -55,8 +61,7 @@ bool chocado(){
 }
 bool MonedaRecogida(){
 		if (My ==  y && Mx  ==  x){
-			BorrarMoneda(numSprites);
-			generarMoneda();
+			
 			return true;
 		} 
 		return false;
@@ -112,11 +117,14 @@ void juego()
 				numMonedasRecogidas = 0;
 				x = 127;
 				y = 95;
+				iprintf("\x1b[20;5HXd");
+				MostrarCabezaArriba(1,60,60);						
+				generarMoneda();
 			}
 		
 		
 		if(ESTADO == JUGANDO){
-			MostrarFondoJuego();
+			visualizarFondoJuego();
 			if(numMonedasRecogidas < 15){
 				ConfigurarTemporizador(55050,64);//50 ticks
 			}
@@ -126,14 +134,13 @@ void juego()
 			if(numMonedasRecogidas = 30){
 				ConfigurarTemporizador(56798,64);//60 ticks
 			}
-			
-			MostrarCabezaArriba(numSprites,x,y);
-			generarMoneda();
 			if(MonedaRecogida()){
 				numMonedasRecogidas++;
+				BorrarMoneda(2);
+				generarMoneda();
 			}
 			if(chocado()){
-				mostrarFondoFinal();
+				visualizarFondoGameOver();
 				BorrarMoneda(numSprites);
 				numSprites--;
 				BorrarCabezaArriba(numSprites);
@@ -155,12 +162,12 @@ void juego()
 				y = 95;
 			}
 			if(tecla ==  SELECT){
-				mostrarFondoInicial();
+				visualizarFondoInicioVerde();
 				if(colorSerpiente==VERDE){
-					cargarFondoVerdeInicio();
+					visualizarFondoInicioVerde();
 				}
 				else if(colorSerpiente==AZUL){
-					cargarFondoAzulInicio();
+					visualizarFondoInicioAzul();
 				}
 				ESTADO = INICIO;
 			}

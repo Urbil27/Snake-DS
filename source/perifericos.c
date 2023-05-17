@@ -5,7 +5,7 @@ perifericos.c
 #include <nds.h>
 #include <stdio.h>
 #include "definiciones.h"
-#include "juego.c"
+#include "juego.h"
 
 int tecla; //variable para guardar la tecla pulsada
 
