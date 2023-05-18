@@ -186,15 +186,18 @@ void juego()
 				tecla = TeclaPulsada();
 
 				if(tecla == START){
+					consoleClear();
+				numMonedasRecogidas = 0;
+
 				ESTADO = JUGANDO;
 				visualizarFondoJuego();
-				numMonedasRecogidas = 0;
 				x = 127;
 				y = 95;
 				MostrarCabezaArriba(1,60,60);						
 				generarMoneda();
 			}
 			if(tecla ==  SELECT){
+				consoleClear();
 				visualizarFondoInicioVerde();
 				if(colorSerpiente==VERDE){
 					visualizarFondoInicioVerde();
