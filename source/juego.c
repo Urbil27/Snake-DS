@@ -58,8 +58,11 @@ void generarMoneda(){
 
 bool chocado(){
 	if(y  == 0 || y == 191 || x == 0 || x == 255){
+		iprintf("\x1b[15;5HChocado");
+
 		return true;
 	}
+	iprintf("\x1b[15;5HNoChocado");
 	return false;
 }
 bool MonedaRecogida(){
@@ -155,6 +158,8 @@ void juego()
 		}
 		if(ESTADO  == FINAL){
 			if(TeclaDetectada()==1){
+				iprintf("\x1b[10;5HTecla: %d",tecla);
+
 				tecla = TeclaPulsada();
 			}
 			if(tecla == START){
