@@ -37,7 +37,6 @@ void RutAtencionTeclado ()
 				BorrarCabezaDer(1,x,y);
 				MostrarCabezaIzq(1,x,y);
 				ultimaTeclaPulsada = tecla;
-				iprintf("\x1b[20;5HTecla: %d",tecla);
 			}
 			if(tecla == DERECHA){
 				BorrarCabezaAbajo(1,x,y);
@@ -45,7 +44,6 @@ void RutAtencionTeclado ()
 				BorrarCabezaIzq(1,x,y);
 				MostrarCabezaDer(1,x,y);
 				ultimaTeclaPulsada = tecla;
-				iprintf("\x1b[20;5HTecla: %d",tecla);
 			}
 		}
 		if(ultimaTeclaPulsada == IZQUIERDA || ultimaTeclaPulsada == DERECHA){
@@ -55,7 +53,6 @@ void RutAtencionTeclado ()
 				BorrarCabezaIzq(1,x,y);
 				MostrarCabezaArriba(1,x,y);
 				ultimaTeclaPulsada = tecla;
-				iprintf("\x1b[20;5HTecla: %d",tecla);
 			}
 			if(tecla == ABAJO){
 				BorrarCabezaArriba(1,x,y);
@@ -63,7 +60,6 @@ void RutAtencionTeclado ()
 				BorrarCabezaIzq(1,x,y);
 				MostrarCabezaAbajo(1,x,y);
 				ultimaTeclaPulsada = tecla;
-				iprintf("\x1b[20;5HTecla: %d",tecla);
 			}
 		}
 		
@@ -77,7 +73,6 @@ void RutAtencionTeclado ()
 				BorrarCabezaDerAzul(1,x,y);
 				MostrarCabezaIzqAzul(1,x,y);
 				ultimaTeclaPulsada = tecla;
-				iprintf("\x1b[20;5HTecla: %d",tecla);
 			}
 			if(tecla == DERECHA){
 				BorrarCabezaAbajoAzul(1,x,y);
@@ -85,7 +80,6 @@ void RutAtencionTeclado ()
 				BorrarCabezaIzqAzul(1,x,y);
 				MostrarCabezaDerAzul(1,x,y);
 				ultimaTeclaPulsada = tecla;
-				iprintf("\x1b[20;5HTecla: %d",tecla);
 			}
 		}
 		if(ultimaTeclaPulsada == IZQUIERDA || ultimaTeclaPulsada == DERECHA){
@@ -95,7 +89,6 @@ void RutAtencionTeclado ()
 				BorrarCabezaIzqAzul(1,x,y);
 				MostrarCabezaArribaAzul(1,x,y);
 				ultimaTeclaPulsada = tecla;
-				iprintf("\x1b[20;5HTecla: %d",tecla);
 			}
 			if(tecla == ABAJO){
 				BorrarCabezaArribaAzul(1,x,y);
@@ -103,7 +96,6 @@ void RutAtencionTeclado ()
 				BorrarCabezaIzqAzul(1,x,y);
 				MostrarCabezaAbajoAzul(1,x,y);
 				ultimaTeclaPulsada = tecla;
-				iprintf("\x1b[20;5HTecla: %d",tecla);
 			}
 		}
 		
@@ -127,8 +119,7 @@ if(ESTADO == JUGANDO){
 	if(ultimaTeclaPulsada == IZQUIERDA){
 		x = x - 1;
 	}
-	//iprintf("\x1b[19;5HX: %d",x);
-	//iprintf("\x1b[20;5HY: %d",y);
+	
 	actualizarPosicion(x,y);
 }
 	

@@ -29,18 +29,35 @@ int Mx;
 extern int numSprites = 0;
 int  numMonedasRecogidas = 0;
 void actualizarPosicion(){
-	if(ultimaTeclaPulsada == ARRIBA){
-		MostrarCabezaArriba(1,x,y);
+	if(colorSerpiente==VERDE){
+		if(ultimaTeclaPulsada == ARRIBA){
+				MostrarCabezaArriba(1,x,y);
+			}
+			if(ultimaTeclaPulsada == ABAJO){
+				MostrarCabezaAbajo(1,x,y);
+			}
+			if(ultimaTeclaPulsada == IZQUIERDA){
+				MostrarCabezaIzq(1,x,y);
+			}
+			if(ultimaTeclaPulsada == DERECHA){
+				MostrarCabezaDer(1,x,y);
+			}
 	}
-	if(ultimaTeclaPulsada == ABAJO){
-		MostrarCabezaAbajo(1,x,y);
-	}
-	if(ultimaTeclaPulsada == IZQUIERDA){
-		MostrarCabezaIzq(1,x,y);
-	}
-	if(ultimaTeclaPulsada == DERECHA){
-		MostrarCabezaDer(1,x,y);
-	}
+	else if(colorSerpiente == AZUL){
+		if(ultimaTeclaPulsada == ARRIBA){
+					MostrarCabezaArribaAzul(1,x,y);
+				}
+				if(ultimaTeclaPulsada == ABAJO){
+					MostrarCabezaAbajoAzul(1,x,y);
+				}
+				if(ultimaTeclaPulsada == IZQUIERDA){
+					MostrarCabezaIzqAzul(1,x,y);
+				}
+				if(ultimaTeclaPulsada == DERECHA){
+					MostrarCabezaDerAzul(1,x,y);
+				}
+		}
+	
 }
 
 void generarMoneda(){
@@ -58,18 +75,17 @@ void generarMoneda(){
 
 bool chocado(){
 	if(y  == 0 || y == 191 || x == 0 || x == 255){
-		iprintf("\x1b[15;5HChocado");
 
 		return true;
 	}
-	iprintf("\x1b[15;5HNoChocado");
 	return false;
 }
 bool MonedaRecogida(){
-		if (My ==  y && Mx  ==  x){
+		if ((abs(My - y) <=5 )&&( abs(Mx - x)<=5)){
 			
 			return true;
 		} 
+		
 		return false;
 }
 void juego()
@@ -121,15 +137,14 @@ void juego()
 			if(tecla == START){
 				visualizarFondoJuego();
 				numMonedasRecogidas = 0;
+				iprintf("\x1b[17;5HMonedas: %d",numMonedasRecogidas);
 				x = 127;
 				y = 95;
 				if(colorSerpiente==VERDE){
-					iprintf("\x1b[10;5HVERDE");
 
 					MostrarCabezaArriba(1,x,y);						
 				}
 				else if(colorSerpiente==AZUL){
-					iprintf("\x1b[10;5HAZUL");
 					MostrarCabezaArribaAzul(1,x,y);
 				}
 				generarMoneda();
@@ -151,6 +166,7 @@ void juego()
 			}
 			if(MonedaRecogida()){
 				numMonedasRecogidas++;
+				iprintf("\x1b[17;5HMonedas: %d",numMonedasRecogidas);
 				BorrarMoneda(2,Mx,My);
 				generarMoneda();
 			}

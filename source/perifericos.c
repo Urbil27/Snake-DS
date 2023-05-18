@@ -64,7 +64,6 @@ int TeclaDetectada()
 {
 	//Devuelve TRUE si detecta que se ha pulsado alguna tecla.
 	if ((~TECLAS_DAT & 0x03ff)!=0){
-		//iprintf(~TECLAS_DAT & 0x03ff);
 		return 1;
 	} 
 	else return 0;
