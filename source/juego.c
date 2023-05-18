@@ -123,7 +123,15 @@ void juego()
 				numMonedasRecogidas = 0;
 				x = 127;
 				y = 95;
-				MostrarCabezaArriba(1,x,y);						
+				if(colorSerpiente==VERDE){
+					iprintf("\x1b[10;5HVERDE");
+
+					MostrarCabezaArriba(1,x,y);						
+				}
+				else if(colorSerpiente==AZUL){
+					iprintf("\x1b[10;5HAZUL");
+					MostrarCabezaArribaAzul(1,x,y);
+				}
 				generarMoneda();
 				ESTADO = JUGANDO;
 			}
@@ -158,11 +166,10 @@ void juego()
 		}
 		if(ESTADO  == FINAL){
 			if(TeclaDetectada()==1){
-				iprintf("\x1b[10;5HTecla: %d",tecla);
 
 				tecla = TeclaPulsada();
-			}
-			if(tecla == START){
+
+				if(tecla == START){
 				ESTADO = JUGANDO;
 				visualizarFondoJuego();
 				numMonedasRecogidas = 0;
@@ -181,6 +188,8 @@ void juego()
 				}
 				ESTADO = INICIO;
 			}
+			}
+			
 		}	
 	}
 } 	

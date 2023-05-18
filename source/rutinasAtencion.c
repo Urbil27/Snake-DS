@@ -8,6 +8,7 @@ rutinasAtencion.c
 #include "perifericos.h"
 #include "fondos.h"
 #include "sprites.h"
+#include "juego.h"
 
 int seg3;
 int ultimaTeclaPulsada = ARRIBA;
@@ -28,7 +29,7 @@ void RutAtencionTeclado ()
 }*/
 	int tecla;
 	tecla = TeclaPulsada();
-	if( ESTADO == JUGANDO){
+	if( ESTADO == JUGANDO && colorSerpiente==VERDE){
 		if(ultimaTeclaPulsada == ARRIBA || ultimaTeclaPulsada == ABAJO){
 			if(tecla == IZQUIERDA){
 				BorrarCabezaAbajo(1,x,y);
@@ -61,6 +62,46 @@ void RutAtencionTeclado ()
 				BorrarCabezaDer(1,x,y);
 				BorrarCabezaIzq(1,x,y);
 				MostrarCabezaAbajo(1,x,y);
+				ultimaTeclaPulsada = tecla;
+				iprintf("\x1b[20;5HTecla: %d",tecla);
+			}
+		}
+		
+	
+	}
+	else if( ESTADO == JUGANDO && colorSerpiente==AZUL){
+		if(ultimaTeclaPulsada == ARRIBA || ultimaTeclaPulsada == ABAJO){
+			if(tecla == IZQUIERDA){
+				BorrarCabezaAbajoAzul(1,x,y);
+				BorrarCabezaArribaAzul(1,x,y);
+				BorrarCabezaDerAzul(1,x,y);
+				MostrarCabezaIzqAzul(1,x,y);
+				ultimaTeclaPulsada = tecla;
+				iprintf("\x1b[20;5HTecla: %d",tecla);
+			}
+			if(tecla == DERECHA){
+				BorrarCabezaAbajoAzul(1,x,y);
+				BorrarCabezaArribaAzul(1,x,y);
+				BorrarCabezaIzqAzul(1,x,y);
+				MostrarCabezaDerAzul(1,x,y);
+				ultimaTeclaPulsada = tecla;
+				iprintf("\x1b[20;5HTecla: %d",tecla);
+			}
+		}
+		if(ultimaTeclaPulsada == IZQUIERDA || ultimaTeclaPulsada == DERECHA){
+			if(tecla == ARRIBA){
+				BorrarCabezaAbajoAzul(1,x,y);
+				BorrarCabezaDerAzul(1,x,y);
+				BorrarCabezaIzqAzul(1,x,y);
+				MostrarCabezaArribaAzul(1,x,y);
+				ultimaTeclaPulsada = tecla;
+				iprintf("\x1b[20;5HTecla: %d",tecla);
+			}
+			if(tecla == ABAJO){
+				BorrarCabezaArribaAzul(1,x,y);
+				BorrarCabezaDerAzul(1,x,y);
+				BorrarCabezaIzqAzul(1,x,y);
+				MostrarCabezaAbajoAzul(1,x,y);
 				ultimaTeclaPulsada = tecla;
 				iprintf("\x1b[20;5HTecla: %d",tecla);
 			}

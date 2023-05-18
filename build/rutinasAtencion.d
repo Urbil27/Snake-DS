@@ -51,7 +51,8 @@ rutinasAtencion.o:  \
   /home/user/SharedFiles/Proyecto/include/definiciones.h \
   /home/user/SharedFiles/Proyecto/include/perifericos.h \
   /home/user/SharedFiles/Proyecto/include/fondos.h \
-  /home/user/SharedFiles/Proyecto/include/sprites.h
+  /home/user/SharedFiles/Proyecto/include/sprites.h \
+  /home/user/SharedFiles/Proyecto/include/juego.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -156,3 +157,5 @@ rutinasAtencion.o:  \
 /home/user/SharedFiles/Proyecto/include/fondos.h:
 
 /home/user/SharedFiles/Proyecto/include/sprites.h:
+
+/home/user/SharedFiles/Proyecto/include/juego.h:

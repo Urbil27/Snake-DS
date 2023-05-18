@@ -52,11 +52,13 @@ void EstablecerPaletaPrincipal() {
 	SPRITE_PALETTE[2] = RGB15(31,31,0); // los píxeles con valor 2 serán verdes.
 	SPRITE_PALETTE[3] = RGB15(31,31,31); // los píxeles con valor 3 serán Blanco.
 	SPRITE_PALETTE[4] = RGB15(0,31,0); // los píxeles con valor 4 serán Verde fosforito.
+	SPRITE_PALETTE[5] = RGB15(0,0,31); // los píxeles con valor 4 serán Verde fosforito.
 	SPRITE_PALETTE[6] = RGB15(0,0,0); // los píxeles con valor 6 serán negro.
 	SPRITE_PALETTE[8] = RGB15(31,0,31); // los píxeles con valor 6 serán negro.
 	SPRITE_PALETTE[14] = RGB15(25,0,0); // los píxeles con valor 14 serán Granate.
 	SPRITE_PALETTE[15] = RGB15(16,0,16);
 	SPRITE_PALETTE[17] = RGB15(31,19,25);
+	SPRITE_PALETTE[19] = RGB15(0,0,16);
 	SPRITE_PALETTE[23] = RGB15(19,31,19); // los píxeles con valor 23 serán verde claro.
 	SPRITE_PALETTE[21] = RGB15(0,12,0); // los píxeles con valor 21 serán verde oscuro.
 }
