@@ -8,34 +8,56 @@ perifericos.c
 #include "juego.h"
 
 int tecla; //variable para guardar la tecla pulsada
-
+bool pulsado = 0;
 extern void PosTactil(){   //Esta funcion mira donde se está tocando en la pantalla y la devuelve
 	touchPosition pos_pantalla;
 	touchRead(&pos_pantalla);
+	
 
-	if(pos_pantalla.py >=90 && pos_pantalla.py<= 145){ 
-				if (pos_pantalla.px >=0 && pos_pantalla.px<= 120){//Pulsacion flecha izquierda
-					if(colorSerpiente == VERDE){
-						visualizarFondoInicioAzul();
-						colorSerpiente = AZUL;
-					}
-					if(colorSerpiente == AZUL){
-						visualizarFondoInicioVerde();
-						colorSerpiente = VERDE;
-					}
-				}
-				if (pos_pantalla.px >=130 && pos_pantalla.px<= 255){//Pulsacion flecha Derecha
-					if(colorSerpiente == VERDE){
-						visualizarFondoInicioAzul();
-						colorSerpiente = AZUL;
-					}
-					if(colorSerpiente == AZUL){
-						visualizarFondoInicioVerde();
-						colorSerpiente = VERDE;
-					}
-				}
-	}
+		if(pos_pantalla.py >=90 && pos_pantalla.py<= 145){ 
+						if (pos_pantalla.px >=0 && pos_pantalla.px<= 120){//Pulsacion flecha izquierda
+							if(!pulsado){
+								if(colorSerpiente == VERDE){
+								visualizarFondoInicioAzul();
+								colorSerpiente = AZUL;
+								pulsado = 1;
+								}
+								if(colorSerpiente == AZUL){
+									visualizarFondoInicioVerde();
+									colorSerpiente = VERDE;
+									pulsado = 1;
+									}
+								}
+							else{
+								pulsado=0;
+							}
+							
+						}
+						if (pos_pantalla.px >=130 && pos_pantalla.px<= 255){//Pulsacion flecha Derecha
+							if(!pulsado){
+								if(colorSerpiente == VERDE){
+									visualizarFondoInicioAzul();
+									colorSerpiente = AZUL;
+									pulsado = 1;
+								}
+								if(colorSerpiente == AZUL){
+									visualizarFondoInicioVerde();
+									colorSerpiente = VERDE;
+									pulsado = 1;
+								}
+							}
+							else{
+								pulsado = 0;
+							}
+							
+						}
+			}
+			
 }
+	
+	
+
+
 int TeclaDetectada() 
 {
 	//Devuelve TRUE si detecta que se ha pulsado alguna tecla.

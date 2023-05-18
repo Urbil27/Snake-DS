@@ -99,6 +99,7 @@ void juego()
 	EstablecerVectorInt();
 	HabilitarIntTeclado();
 	HabilitarIntTempo();
+	visualizarFondoInicioVerde();
 	while(1)
 	{	
 		
@@ -108,7 +109,7 @@ void juego()
 		
 
 		if(ESTADO == INICIO){
-			visualizarFondoInicioVerde();
+			
 			PosTactil();
 			
 			if(TeclaDetectada()==1){
