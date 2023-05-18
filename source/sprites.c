@@ -16,6 +16,11 @@ u16* gfxCabezaIzq;
 u16* gfxCabezaArriba;
 u16* gfxCabezaAbajo;
 u16* gfxCuerpo;
+u16* gfxCabezaDerAzul;
+u16* gfxCabezaIzqAzul;
+u16* gfxCabezaArribaAzul;
+u16* gfxCabezaAbajoAzul;
+u16* gfxCuerpoAzul;
 
 
 	
@@ -29,6 +34,11 @@ void memoriaReserva()
 	gfxCabezaAbajo= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	gfxCabezaArriba= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	gfxCuerpo= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxCabezaDerAzul= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxCabezaIzqAzul= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxCabezaAbajoAzul= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxCabezaArribaAzul= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxCuerpoAzul= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 
 	//gfxromboGrande=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
 }
@@ -78,60 +88,63 @@ u8 moneda[256] =
 };
 u8 cabezaDer[256] = 
 {
-0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	// 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	0	0	0	2	2	2	2	0	0	0	0	0	0
-0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	0	2	2	2	2	2	2	2	2	0	0	0	0
-0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	2	2	2	2	2	2	2	2	2	2	0	0	0
-0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
-2	,	2	,	2	,	2	,	0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
-2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
-2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
-0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
-0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
-0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
-0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
-2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	// 	0	0	0	2	2	2	2	2	2	2	2	2	2	0	0	0
-2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	// 	0	0	0	0	2	2	2	2	2	2	2	2	0	0	0	0
-2	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	0	,	// 	0	0	0	0	0	0	2	2	2	2	0	0	0	0	0	0
-2	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	// 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	21	,	21	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	1	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	23	,	 //	0	0	0	0	0	21	21	21	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	21	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	4	21	0	0	0	0	0	0
+21	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	4	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	1	4	4	21	0	0	0	0	0
+4	,	4	,	21	,	0	,	0	,	0	,	0	,	0	,	4	,	1	,	1	,	1	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	23	4	1	1	1	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	23	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	1	,	 //	0	0	0	0	21	4	4	23	4	1	1	1	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	 //	0	0	0	0	21	4	4	1	4	4	21	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	21	,	21	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	4	21	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	21	0	0	0	0	0	0	0
+4	,	1	,	1	,	1	,	0	,	0	,	0	,	0	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	21	21	21	0	0	0	0	0	0	0	0
+4	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
 };
 u8 cabezaIzq[256] = 
 {
-0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	// 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	0	0	0	2	2	2	2	0	0	0	0	0	0
-0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	0	2	2	2	2	2	2	2	2	0	0	0	0
-0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	2	2	2	2	2	2	2	2	2	2	0	0	0
-0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
-2	,	2	,	2	,	2	,	0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
-2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
-2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
-0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
-0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
-0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
-0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
-2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	// 	0	0	0	2	2	2	2	2	2	2	2	2	2	0	0	0
-2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	// 	0	0	0	0	2	2	2	2	2	2	2	2	0	0	0	0
-2	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	0	,	// 	0	0	0	0	0	0	2	2	2	2	0	0	0	0	0	0
-2	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	// 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	4	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	0	,	0	,	0	,	0	,	1	,	1	,	1	,	4	,	 //	0	0	0	0	0	0	0	0	21	21	21	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	21	4	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	21	,	21	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	21	4	4	4	4	21	0	0	0	0
+4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	21	4	4	1	4	4	21	0	0	0	0
+1	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	23	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	1	1	1	4	23	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	1	,	1	,	1	,	4	,	0	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	 //	0	0	0	0	1	1	1	4	23	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	21	,	4	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	 //	0	0	0	0	0	21	4	4	1	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	21	4	4	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	21	4	4	4	21	0	0	0	0
+23	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	1	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	21	21	21	0	0	0	0	0
+4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+21	,	21	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
 };
 u8 cabezaArriba[256] = 
 {
-0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	// 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	0	0	0	2	2	2	2	0	0	0	0	0	0
-0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	0	2	2	2	2	2	2	2	2	0	0	0	0
-0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	2	2	2	2	2	2	2	2	2	2	0	0	0
-0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
-2	,	2	,	2	,	2	,	0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
-2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
-2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
-0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
-0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
-0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
-0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
-2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	// 	0	0	0	2	2	2	2	2	2	2	2	2	2	0	0	0
-2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	// 	0	0	0	0	2	2	2	2	2	2	2	2	0	0	0	0
-2	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	0	,	// 	0	0	0	0	0	0	2	2	2	2	0	0	0	0	0	0
-2	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	// 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	1	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	21	,	1	,	0	,	0	,	0	,	0	,	24	,	21	,	4	,	1	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	 //	0	0	0	0	0	0	0	1	1	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	21	1	1	21	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	24	21	4	1	1	4	21	0	0	0	0	0
+1	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	1	,	4	,	21	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	4	4	4	21	0	0	0	0
+4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	4	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	1	,	23	,	0	,	0	,	0	,	0	,	21	,	4	,	23	,	23	,	 //	0	0	0	0	21	4	1	23	23	1	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	0	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	 //	0	0	0	0	21	4	23	23	23	23	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	21	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	4	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	21	4	4	4	4	21	0	0	0	0	0
+23	,	1	,	4	,	21	,	0	,	0	,	0	,	0	,	23	,	23	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	21	21	21	21	0	0	0	0	0	0
+4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+21	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
 };
 u8 cabezaAbajo[256] = 
 {
@@ -154,6 +167,105 @@ u8 cabezaAbajo[256] =
 
 };
 u8 cuerpo[256] = 
+{
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	// 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	0	0	0	2	2	2	2	0	0	0	0	0	0
+0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	0	2	2	2	2	2	2	2	2	0	0	0	0
+0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	2	2	2	2	2	2	2	2	2	2	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
+2	,	2	,	2	,	2	,	0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
+2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
+2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
+0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
+0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	// 	0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
+0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	// 	0	0	2	2	2	2	2	2	2	2	2	2	2	2	0	0
+2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	// 	0	0	0	2	2	2	2	2	2	2	2	2	2	0	0	0
+2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	2	,	0	,	0	,	// 	0	0	0	0	2	2	2	2	2	2	2	2	0	0	0	0
+2	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	0	,	// 	0	0	0	0	0	0	2	2	2	2	0	0	0	0	0	0
+2	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	// 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+};
+u8 cabezaDerAzul[256] = 
+{
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	21	,	21	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	1	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	23	,	 //	0	0	0	0	0	21	21	21	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	21	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	4	21	0	0	0	0	0	0
+21	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	4	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	1	4	4	21	0	0	0	0	0
+4	,	4	,	21	,	0	,	0	,	0	,	0	,	0	,	4	,	1	,	1	,	1	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	23	4	1	1	1	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	23	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	1	,	 //	0	0	0	0	21	4	4	23	4	1	1	1	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	 //	0	0	0	0	21	4	4	1	4	4	21	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	21	,	21	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	4	21	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	21	0	0	0	0	0	0	0
+4	,	1	,	1	,	1	,	0	,	0	,	0	,	0	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	21	21	21	0	0	0	0	0	0	0	0
+4	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
+};
+u8 cabezaIzqAzul[256] = 
+{
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	4	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	0	,	0	,	0	,	0	,	1	,	1	,	1	,	4	,	 //	0	0	0	0	0	0	0	0	21	21	21	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	21	4	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	21	,	21	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	21	4	4	4	4	21	0	0	0	0
+4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	21	4	4	1	4	4	21	0	0	0	0
+1	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	23	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	1	1	1	4	23	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	1	,	1	,	1	,	4	,	0	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	 //	0	0	0	0	1	1	1	4	23	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	21	,	4	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	 //	0	0	0	0	0	21	4	4	1	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	21	4	4	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	21	4	4	4	21	0	0	0	0
+23	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	1	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	21	21	21	0	0	0	0	0
+4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+21	,	21	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
+};
+u8 cabezaArribaAzul[256] = 
+{
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	1	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	21	,	1	,	0	,	0	,	0	,	0	,	24	,	21	,	4	,	1	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	 //	0	0	0	0	0	0	0	1	1	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	21	1	1	21	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	24	21	4	1	1	4	21	0	0	0	0	0
+1	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	1	,	4	,	21	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	4	4	4	21	0	0	0	0
+4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	4	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	1	,	23	,	0	,	0	,	0	,	0	,	21	,	4	,	23	,	23	,	 //	0	0	0	0	21	4	1	23	23	1	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	0	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	 //	0	0	0	0	21	4	23	23	23	23	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	21	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	4	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	21	4	4	4	4	21	0	0	0	0	0
+23	,	1	,	4	,	21	,	0	,	0	,	0	,	0	,	23	,	23	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	21	21	21	21	0	0	0	0	0	0
+4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+21	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
+};
+u8 cabezaAbajoAzul[256] = 
+{
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	21	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	23	,	23	,	0	,	0	,	0	,	0	,	21	,	4	,	1	,	23	,	 //	0	0	0	0	0	0	21	21	21	21	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	21	4	4	4	4	21	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	4	4	4	4	4	21	0	0	0	0
+4	,	4	,	21	,	0	,	0	,	0	,	0	,	0	,	4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	23	23	23	23	4	21	0	0	0	0
+23	,	23	,	4	,	21	,	0	,	0	,	0	,	0	,	23	,	1	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	21	4	1	23	23	1	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	0	,	0	,	0	,	0	,	21	,	4	,	4	,	4	,	 //	0	0	0	0	21	4	4	4	4	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	21	,	4	,	1	,	0	,	0	,	0	,	0	,	0	,	0	,	21	,	1	,	 //	0	0	0	0	21	4	4	4	4	4	4	21	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	21	4	1	1	4	21	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	21	1	1	21	0	0	0	0	0	0
+4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	4	,	4	,	4	,	21	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	1	1	0	0	0	0	0	0	0
+1	,	4	,	21	,	0	,	0	,	0	,	0	,	0	,	1	,	21	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+1	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	 //	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
+};
+u8 cuerpoAzul[256] = 
 {
 0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	// 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 0	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	0	,	0	,	0	,	2	,	2	,	2	,	2	,	2	,	// 	0	0	0	0	0	0	2	2	2	2	0	0	0	0	0	0
@@ -202,6 +314,26 @@ int i;
 		for(i = 0; i < 16 * 16 / 2; i++) 
 	{	
 		gfxCabezaArriba[i] = cabezaArriba[i*2] | (cabezaArriba[(i*2)+1]<<8);				
+	}
+	for(i = 0; i < 16 * 16 / 2; i++) 
+	{	
+		gfxCuerpoAzul[i] = cuerpoAzul[i*2] | (cuerpoAzul[(i*2)+1]<<8);				
+	}
+		for(i = 0; i < 16 * 16 / 2; i++) 
+	{	
+		gfxCabezaDerAzul[i] = cabezaDerAzul[i*2] | (cabezaDerAzul[(i*2)+1]<<8);				
+	}
+		for(i = 0; i < 16 * 16 / 2; i++) 
+	{	
+		gfxCabezaIzqAzul[i] = cabezaIzqAzul[i*2] | (cabezaIzqAzul[(i*2)+1]<<8);				
+	}
+		for(i = 0; i < 16 * 16 / 2; i++) 
+	{	
+		gfxCabezaAbajoAzul[i] = cabezaAbajoAzul[i*2] | (cabezaAbajoAzul[(i*2)+1]<<8);				
+	}
+		for(i = 0; i < 16 * 16 / 2; i++) 
+	{	
+		gfxCabezaArribaAzul[i] = cabezaArribaAzul[i*2] | (cabezaArribaAzul[(i*2)+1]<<8);				
 	}
 	
 	//sprite de 32x32
@@ -457,6 +589,217 @@ oamSet(&oamMain, //main graphics engine context
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
 		gfxCabezaDer,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+oamUpdate(&oamMain); 
+
+}
+
+void MostrarCuerpoAzul(int indice, int x, int y)
+{ 
+ 		
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxCuerpoAzul,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	  
+oamUpdate(&oamMain);  
+}
+
+/* Esta función borra de la pantalla el Rombo con el índice indicado */
+void BorrarCuerpoAzul(int indice, int x, int y)
+{
+
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxCuerpoAzul,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+oamUpdate(&oamMain); 
+
+}
+void MostrarCabezaArribaAzul(int indice, int x, int y)
+{ 
+ 		
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxCabezaArribaAzul,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	  
+oamUpdate(&oamMain);  
+}
+
+/* Esta función borra de la pantalla el Rombo con el índice indicado */
+void BorrarCabezaArribaAzul(int indice, int x, int y)
+{
+
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxCabezaArribaAzul,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+oamUpdate(&oamMain); 
+
+}
+void MostrarCabezaAbajoAzul(int indice, int x, int y)
+{ 
+ 		
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxCabezaAbajoAzul,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	  
+oamUpdate(&oamMain);  
+}
+
+/* Esta función borra de la pantalla el Rombo con el índice indicado */
+void BorrarCabezaAbajoAzul(int indice, int x, int y)
+{
+
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxCabezaAbajoAzul,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+oamUpdate(&oamMain); 
+
+}
+void MostrarCabezaIzqAzul(int indice, int x, int y)
+{ 
+ 		
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxCabezaIzqAzul,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	  
+oamUpdate(&oamMain);  
+}
+
+/* Esta función borra de la pantalla el Rombo con el índice indicado */
+void BorrarCabezaIzqAzul(int indice, int x, int y)
+{
+
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxCabezaIzqAzul,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+oamUpdate(&oamMain); 
+
+}
+void MostrarCabezaDerAzul(int indice, int x, int y)
+{ 
+ 		
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxCabezaDerAzul,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	  
+oamUpdate(&oamMain);  
+}
+
+/* Esta función borra de la pantalla el Rombo con el índice indicado */
+void BorrarCabezaDerAzul(int indice, int x, int y)
+{
+
+oamSet(&oamMain, //main graphics engine context
+		indice,           //oam index (0 to 127)  
+		x, y,   //x and y pixel location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxCabezaDerAzul,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		true,			//hide the sprite?

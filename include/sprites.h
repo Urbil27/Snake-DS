@@ -29,6 +29,11 @@ extern void MostrarCabezaArriba(int indice, int x, int y);
 extern void MostrarCabezaAbajo(int indice, int x, int y);
 extern void MostrarCabezaDer(int indice, int x, int y);
 extern void MostrarCabezaIzq(int indice, int x, int y);
+extern void MostrarCuerpoAzul(int indice, int x, int y);
+extern void MostrarCabezaArribaAzul(int indice, int x, int y);
+extern void MostrarCabezaAbajoAzul(int indice, int x, int y);
+extern void MostrarCabezaDerAzul(int indice, int x, int y);
+extern void MostrarCabezaIzqAzul(int indice, int x, int y);
 
 /*Esta función borra de la pantalla el rombo con el índice que se le indique como parámetro */
 extern void BorrarMoneda(int indice, int x, int y);
@@ -37,5 +42,8 @@ extern void BorrarCabezaArriba(int indice, int x, int y);
 extern void BorrarCabezaAbajo(int indice, int x, int y);
 extern void BorrarCabezaDer(int indice, int x, int y);
 extern void BorrarCabezaIzq(int indice, int x, int y);
-
-
+extern void BorrarCuerpoAzul(int indice, int x, int y);
+extern void BorrarCabezaArribaAzul(int indice, int x, int y);
+extern void BorrarCabezaAbajoAzul(int indice, int x, int y);
+extern void BorrarCabezaDerAzul(int indice, int x, int y);
+extern void BorrarCabezaIzqAzul(int indice, int x, int y);
