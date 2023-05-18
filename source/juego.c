@@ -137,7 +137,7 @@ void juego()
 			if(tecla == START){
 				visualizarFondoJuego();
 				numMonedasRecogidas = 0;
-				iprintf("\x1b[17;5HMonedas: %d",numMonedasRecogidas);
+				iprintf("\x1b[11;8HMonedas: %d",numMonedasRecogidas);
 				x = 127;
 				y = 95;
 				if(colorSerpiente==VERDE){
@@ -158,15 +158,15 @@ void juego()
 			if(numMonedasRecogidas < 15){
 				ConfigurarTemporizador(55050,0xFFF9);//50 ticks
 			}
-			if(numMonedasRecogidas = 15){
+			if(numMonedasRecogidas == 15){
 				ConfigurarTemporizador(56003,0xFFF9);//55 ticks
 			}
-			if(numMonedasRecogidas = 30){
+			if(numMonedasRecogidas == 30){
 				ConfigurarTemporizador(56798,0xFFF9);//60 ticks
 			}
 			if(MonedaRecogida()){
 				numMonedasRecogidas++;
-				iprintf("\x1b[17;5HMonedas: %d",numMonedasRecogidas);
+				iprintf("\x1b[11;8HMonedas: %d",numMonedasRecogidas);
 				BorrarMoneda(2,Mx,My);
 				generarMoneda();
 			}
